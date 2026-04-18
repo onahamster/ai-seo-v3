@@ -132,7 +132,7 @@ export async function runResearch(
 
   const companyText = await callGemini(
     settings.gemini_api_key,
-    "gemini-2.5-flash-preview-04-17",
+    "gemini-3-flash-preview",
     companyPrompt,
     { temperature: 0.3, maxOutputTokens: 4096 }
   );
@@ -202,7 +202,7 @@ JSON形式で出力:
 
   const visibilityText = await callGemini(
     settings.gemini_api_key,
-    "gemini-2.5-flash-preview-04-17",
+    "gemini-3-flash-preview",
     visibilityPrompt,
     { temperature: 0.3 }
   );
@@ -325,7 +325,7 @@ ${JSON.stringify(researchData.visibility, null, 2)}
 
   const result = await callGemini(
     settings.gemini_api_key,
-    "gemini-2.5-flash-preview-04-17",
+    "gemini-3-flash-preview",
     strategyPrompt,
     { temperature: 0.4, maxOutputTokens: 8192 }
   );
@@ -445,7 +445,7 @@ AIに引用されるためのCITABLEフレームワークに完全準拠した�
 
   const result = await callGemini(
     settings.gemini_api_key,
-    "gemini-2.5-flash-preview-04-17",
+    "gemini-3-flash-preview",
     prompt,
     { temperature: 0.7, maxOutputTokens: 8192 }
   );
@@ -513,7 +513,7 @@ export async function runMonitoring(
       try {
         const geminiResponse = await callGemini(
           settings.gemini_api_key,
-          "gemini-2.0-flash",
+          "gemini-3.1-flash-lite-preview",
           query,
           { temperature: 0.3, maxOutputTokens: 2048 }
         );
@@ -723,7 +723,7 @@ ${responseText.slice(0, 3000)}
   try {
     const result = await callGemini(
       settings.gemini_api_key,
-      "gemini-2.0-flash",
+      "gemini-3.1-flash-lite-preview",
       prompt,
       { temperature: 0.1, maxOutputTokens: 1024 }
     );
