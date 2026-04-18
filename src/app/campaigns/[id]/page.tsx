@@ -1,5 +1,9 @@
 "use client";
 
+export function generateStaticParams() {
+  return [{ id: "__dynamic__" }];
+}
+
 import { useParams } from "next/navigation";
 import { useStore } from "@/lib/store";
 import Link from "next/link";

@@ -1,5 +1,9 @@
 "use client";
 
+export function generateStaticParams() {
+  return [{ id: "__dynamic__" }];
+}
+
 import { useState } from "react";
 import { useParams } from "next/navigation";
 import { useStore } from "@/lib/store";
