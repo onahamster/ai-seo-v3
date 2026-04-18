@@ -1,0 +1,245 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&display=swap");
+
+:root {
+  --cb-black: #000000;
+  --cb-text: #f5f5f7;
+  --cb-sub: #86868b;
+  --cb-cyan: #0bbfca;
+  --cb-border: #333333;
+  --cb-surface: #111111;
+  --cb-surface2: #1a1a1a;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--cb-black);
+  color: var(--cb-text);
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(11, 191, 202, 0.3);
+  color: var(--cb-text);
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cb-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cb-border);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cb-cyan);
+}
+
+/* Border-radius 0 global enforcement */
+*,
+*::before,
+*::after {
+  border-radius: 0 !important;
+}
+
+/* No card shadows */
+.no-shadow {
+  box-shadow: none !important;
+}
+
+/* Cinematic text styles */
+.text-gradient-cyan {
+  background: linear-gradient(135deg, #0bbfca 0%, #0d9aa3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animate on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Shimmer loading */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--cb-surface) 25%,
+    var(--cb-surface2) 50%,
+    var(--cb-surface) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+/* Custom focus */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--cb-cyan) !important;
+}
+
+/* Tooltip */
+.tooltip-container {
+  position: relative;
+}
+
+.tooltip-container .tooltip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--cb-surface2);
+  color: var(--cb-text);
+  padding: 8px 12px;
+  font-size: 12px;
+  white-space: nowrap;
+  border: 1px solid var(--cb-border);
+  z-index: 100;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.tooltip-container:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Platform colors */
+.platform-chatgpt {
+  color: #10a37f;
+}
+.platform-perplexity {
+  color: #20b8cd;
+}
+.platform-gemini {
+  color: #8e75b2;
+}
+.platform-aio {
+  color: #4285f4;
+}
+
+/* Prose reset for article preview */
+.article-preview h1 {
+  font-size: 28px;
+  font-weight: 500;
+  margin: 32px 0 16px;
+  color: var(--cb-text);
+}
+
+.article-preview h2 {
+  font-size: 22px;
+  font-weight: 500;
+  margin: 28px 0 14px;
+  color: var(--cb-text);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--cb-border);
+}
+
+.article-preview h3 {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 24px 0 12px;
+  color: var(--cb-sub);
+}
+
+.article-preview p {
+  margin: 12px 0;
+  color: var(--cb-sub);
+  line-height: 1.8;
+}
+
+.article-preview table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.article-preview th,
+.article-preview td {
+  border: 1px solid var(--cb-border);
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.article-preview th {
+  background: var(--cb-surface);
+  color: var(--cb-text);
+  font-weight: 500;
+}
+
+.article-preview td {
+  color: var(--cb-sub);
+}
+
+.article-preview ul,
+.article-preview ol {
+  margin: 12px 0;
+  padding-left: 24px;
+  color: var(--cb-sub);
+}
+
+.article-preview li {
+  margin: 6px 0;
+  line-height: 1.7;
+}
+
+.article-preview blockquote {
+  border-left: 2px solid var(--cb-cyan);
+  padding-left: 16px;
+  margin: 16px 0;
+  color: var(--cb-sub);
+  font-style: italic;
+}
+
+.article-preview code {
+  background: var(--cb-surface);
+  padding: 2px 6px;
+  font-size: 13px;
+  font-family: "Chakra Petch", monospace;
+  color: var(--cb-cyan);
+}
+
+.article-preview pre {
+  background: var(--cb-surface);
+  padding: 16px;
+  overflow-x: auto;
+  margin: 16px 0;
+  border: 1px solid var(--cb-border);
+}
+
+.article-preview pre code {
+  background: none;
+  padding: 0;
+}
