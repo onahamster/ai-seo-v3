@@ -1,5 +1,6 @@
-/campaigns/:id/ /campaigns/__dynamic__/index.html 200
-/campaigns/:id/strategy/ /campaigns/__dynamic__/strategy/index.html 200
-/campaigns/:id/content/ /campaigns/__dynamic__/content/index.html 200
-/campaigns/:id/distribute/ /campaigns/__dynamic__/distribute/index.html 200
-/campaigns/:id/monitor/ /campaigns/__dynamic__/monitor/index.html 200
+/campaigns/new/* /campaigns/new/index.html 200
+/campaigns/:id/strategy/* /campaigns/__dynamic__/strategy/index.html 200
+/campaigns/:id/content/* /campaigns/__dynamic__/content/index.html 200
+/campaigns/:id/distribute/* /campaigns/__dynamic__/distribute/index.html 200
+/campaigns/:id/monitor/* /campaigns/__dynamic__/monitor/index.html 200
+/campaigns/:id/* /campaigns/__dynamic__/index.html 200
