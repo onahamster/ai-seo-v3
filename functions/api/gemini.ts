@@ -4,7 +4,11 @@ export const onRequestPost: PagesFunction<{ GEMINI_API_KEY: string }> = async (c
     return new Response(
       JSON.stringify({
         error: "GEMINI_API_KEY is not configured on the Cloudflare dashboard.",
-        suggestion: "Cloudflare Pages の Settings > Variables から GEMINI_API_KEY を設定してください。",
+        suggestion: "1. Cloudflare Pages の Settings > Variables から GEMINI_API_KEY を設定しているか確認してください。 2. 設定後、ビルドを再実行（Redeploy）したか確認してください。環境変数はビルド時に注入されます。",
+        diagnostics: {
+          hasEnv: !!context.env,
+          keysFound: Object.keys(context.env || {}),
+        }
       }),
       {
         status: 500,
