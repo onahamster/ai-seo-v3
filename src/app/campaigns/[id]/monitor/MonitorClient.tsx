@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { useStore } from "@/lib/store";
 import Link from "next/link";
@@ -9,8 +9,21 @@ import { runMonitoring } from "@/lib/api";
 import Spinner from "@/components/ui/Spinner";
 
 export default function MonitorClient() {
+  const [isMounted, setIsMounted] = useState(false);
+  
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const params = useParams();
-  const id = params?.id as string;
+  let id = params?.id as string;
+
+  if (typeof window !== "undefined") {
+    const pathId = window.location.pathname.split("/")[2];
+    if (pathId && pathId !== "__dynamic__") {
+      id = pathId;
+    }
+  }
   const campaigns = useStore((s) => s.campaigns);
   const settings = useStore((s) => s.settings);
   const monitorResults = useStore((s) => s.getMonitorResultsByCampaign(id));
