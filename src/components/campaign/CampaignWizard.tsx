@@ -45,12 +45,6 @@ export default function CampaignWizard() {
   };
 
   const handleStart = async () => {
-    if (!settings.gemini_api_key) {
-      addToast("Gemini APIキーを設定してください", "error");
-      router.push("/settings/");
-      return;
-    }
-
     setLoading(true);
 
     try {

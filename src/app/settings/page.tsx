@@ -23,13 +23,14 @@ export default function SettingsPage() {
       <div className="space-y-6">
         <section className="space-y-4">
           <h2 className="text-xs text-cb-sub tracking-wider uppercase font-noto">LLM APIs</h2>
-          <Input
-            label="Gemini API Key"
-            type="password"
-            value={settings.gemini_api_key}
-            onChange={(e) => setSettings({ gemini_api_key: e.target.value })}
-            placeholder="AI分析と記事生成に使用します"
-          />
+          <div className="space-y-2">
+            <label className="block text-xs text-cb-sub tracking-wider uppercase font-noto">Gemini API Key</label>
+            <div className="flex items-center gap-3 px-4 py-3 bg-cb-surface border border-cb-border text-sm text-cb-sub font-noto">
+              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+              Cloudflare Environment Variables によって管理されています
+            </div>
+            <p className="text-[10px] text-cb-sub/60 font-noto">※ Cloudflare Pages の管理画面で設定されたキーが使用されます。アプリ内での入力は不要です。</p>
+          </div>
           <Input
             label="OpenAI API Key (Optional)"
             type="password"

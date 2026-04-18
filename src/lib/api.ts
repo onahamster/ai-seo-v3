@@ -15,37 +15,23 @@ import { generateId, parseJsonSafe } from "./utils";
 // Gemini API 呼び出し
 // ============================================
 async function callGemini(
-  apiKey: string,
+  _apiKey: string, // Ignored as we use server-side key now
   model: string,
   prompt: string,
   config?: { temperature?: number; maxOutputTokens?: number; responseMimeType?: string }
 ): Promise<string> {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
-
-  const body: any = {
-    contents: [{ parts: [{ text: prompt }] }],
-    generationConfig: {
-      temperature: config?.temperature ?? 0.7,
-      maxOutputTokens: config?.maxOutputTokens ?? 8192,
-    },
-  };
-
-  if (config?.responseMimeType) {
-    body.generationConfig.responseMimeType = config.responseMimeType;
-  }
-
-  const res = await fetch(url, {
+  const res = await fetch("/api/gemini", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
+    body: JSON.stringify({ model, prompt, config }),
   });
 
   if (!res.ok) {
-    const err = await res.text();
-    throw new Error(`Gemini API error (${res.status}): ${err}`);
+    const errData = await res.json() as any;
+    throw new Error(errData.error || errData.suggestion || `API Error: ${res.status}`);
   }
 
-  const data = await res.json();
+  const data = await res.json() as any;
   const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
   if (!text) throw new Error("Gemini returned empty response");
   return text;
